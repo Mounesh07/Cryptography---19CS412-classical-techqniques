@@ -29,7 +29,7 @@ Implementation using C or pyhton code
 
 
 ## PROGRAM:
-```
+```C
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -121,7 +121,7 @@ To decrypt, use the INVERSE (opposite) of the last 3 rules, and the 1st as-is (d
 
 
 ## PROGRAM:
-```
+```C
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -315,13 +315,15 @@ void decryptByPlayfairCipher(char str[], char key[]) {
 int main() {
     char str[SIZE], key[SIZE];
 
-    // Key to be used
-    strcpy(key, "SAVEETHA");
-    printf("Key text: %s\n", key);
+    // Prompt user for the key
+    printf("Enter the key text: ");
+    fgets(key, SIZE, stdin);
+    key[strcspn(key, "\n")] = '\0';  // Remove trailing newline
 
-    // Plaintext to be encrypted
-    strcpy(str, "MOUNESH");
-    printf("Plain text: %s\n", str);
+    // Prompt user for the plaintext
+    printf("Enter the plain text: ");
+    fgets(str, SIZE, stdin);
+    str[strcspn(str, "\n")] = '\0';  // Remove trailing newline
 
     // Encrypt using Playfair Cipher
     encryptByPlayfairCipher(str, key);
@@ -333,13 +335,11 @@ int main() {
 
     return 0;
 }
-
 ```
-
 ## OUTPUT:
 Output:
 
-![image](https://github.com/user-attachments/assets/95d5ef5f-04f6-4ee2-9e3c-1d1064e16b83)
+![image](https://github.com/user-attachments/assets/3c3c7f89-6b5d-4857-8505-7e9bbadb3661)
 
 ## RESULT:
 The Playfair program is executed successfully
@@ -374,7 +374,7 @@ The cipher can, be adapted to an alphabet with any number of letters. All arithm
 
 
 ## PROGRAM:
-```
+```C
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -423,8 +423,12 @@ int main() {
     char dec[1000] = "";
     int n;
 
-    strcpy(msg, "MOUNESH");
-    printf("Input message : %s\n", msg);
+    // Take user input for the message
+    printf("Enter a message to encode: ");
+    fgets(msg, sizeof(msg), stdin);
+    
+    // Remove newline character if present
+    msg[strcspn(msg, "\n")] = 0;
 
     // Convert the input message to uppercase
     for (int i = 0; i < strlen(msg); i++) {
@@ -468,11 +472,10 @@ int main() {
     printf("Decoded message : %s\n", dec);
     return 0;
 }
-
 ```
 ## OUTPUT:
 
-![image](https://github.com/user-attachments/assets/c8015d5a-8155-4d51-98ed-82ddf9f1cb4c)
+![image](https://github.com/user-attachments/assets/7cfa8b4d-e44a-499b-bfb8-6ed0c126f806)
 
 ## RESULT:
 The Hill Cipher program is executed successfully
@@ -505,7 +508,7 @@ The Vigenere cipher is a method of encrypting alphabetic text by using a series 
 
 
 ## PROGRAM:
-```
+```C
 #include <stdio.h>
 #include <stdlib.h>  // For exit() function
 #include <ctype.h>   // For toupper() function
@@ -615,7 +618,7 @@ Testing algorithm with different key values.
 In the rail fence cipher, the plaintext is written downwards and diagonally on successive "rails" of an imaginary fence, then moving up when we reach the bottom rail. When we reach the top rail, the message is written downwards again until the whole plaintext is written out. The message is then read off in rows.
 
 ## PROGRAM:
-```
+```C
 #include <stdio.h>
 #include <string.h>
 
